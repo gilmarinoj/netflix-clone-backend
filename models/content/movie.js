@@ -64,4 +64,5 @@ const Movie = sequelize.define('Movie', {
     tableName: 'movies'
 });
 
+
 module.exports = Movie;

@@ -10,9 +10,10 @@ const sequelize = require('./config/database.js');
 const indexRoutes = require('./routes/indexRoutes.js');
 const usersRoutes = require('./routes/users/userRoutes.js');
 const authRoutes = require('./routes/auth/authRoutes.js');
-const movieRoutes = require('./routes/content/movieRoutes.js');
 const authMiddleware = require('./middlewares/authMiddleware.js');
 const checkRoleMiddleware = require('./middlewares/checkRoleMiddleware.js');
+const movieRoutes = require('./routes/content/movieRoutes.js');
+const genreRoutes = require('./routes/content/genreRoutes.js');
 
 
 // JSON y URL Encoded Middleware
@@ -38,6 +39,7 @@ app.use('/api', indexRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin/users', [authMiddleware, checkRoleMiddleware(['admin'])], usersRoutes);
 app.use('/api/content/movies', [authMiddleware], movieRoutes);
+app.use('/api/content/genres', [authMiddleware], genreRoutes);
 
 // Correr el servidor
 app.listen(port, () => {
